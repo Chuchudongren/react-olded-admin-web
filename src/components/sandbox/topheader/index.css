@@ -1,0 +1,31 @@
+.menuunfold svg{
+    color: #da6aad !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin: 10px 0 0 0 !important;
+}
+
+.right{
+    float: right;
+
+}
+.right .welcome{
+    font-size: 30px;
+    vertical-align: top;
+
+}
+.right .avatar {
+    width: 50px;
+    height: 50px;
+    margin: 0;
+}
+.right .avatar svg{
+    width: 30px;
+    height: 30px;
+    margin: 8px 0 0 0;
+}
+.ava_menu li{
+    width: 9em;
+    height: 2em;
+    font-size: 22px;
+}

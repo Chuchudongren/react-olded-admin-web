@@ -1,0 +1,15 @@
+#root,.ant-layout{
+    height: 100% ;
+}
+  .site-layout .site-layout-background {
+    background: #fff;
+  }
+  .site-layout-background{
+    margin: 16px 16px 0 16px;
+    padding: 1px;
+    min-Height: 280;
+    overflow: auto;
+  }
+  .site-layout-background::-webkit-scrollbar{
+    display: none;
+  }

@@ -1,7 +1,8 @@
 import React from 'react'
+import IndexRouter from '../router/indexRouter'
 
-export default function index() {
+export default function Page() {
     return (
-        <div>index</div>
+        <IndexRouter />
     )
 }

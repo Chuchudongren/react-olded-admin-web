@@ -1,6 +1,6 @@
 import React from 'react'
-import Pages from './pages/index.jsx'
+import Page from './pages'
 import './App.less'
 export default function App() {
-  return <Pages />
+  return <Page />
 }

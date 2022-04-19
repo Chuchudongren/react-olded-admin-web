@@ -1,0 +1,24 @@
+.logo{
+    height: 32px;
+    line-height: 32px;
+    color: #f566be;
+    background-color: dark;
+    font-size: 22px;
+    margin: 10px;
+    text-align: center;
+    overflow: hidden;
+}
+.siderMenu{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+.menu{
+    overflow: auto;
+}
+.menu::-webkit-scrollbar {
+    display:none
+}
+.ant-menu-title-content{
+    font-size: 20px;
+}
