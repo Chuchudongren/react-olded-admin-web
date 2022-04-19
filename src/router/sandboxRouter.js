@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/sandbox/home'
-import UserList from '../pages/sandbox/user/userLIst'
+import UserList from '../pages/sandbox/user'
 import News from '../pages/sandbox/news'
 import Life from '../pages/sandbox/life'
 import Health from '../pages/sandbox/health'

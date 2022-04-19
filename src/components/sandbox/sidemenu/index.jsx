@@ -1,26 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Layout, Menu } from 'antd'
-// import axios from 'axios'
+
+import axios from 'axios'
+import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import { SideMenu } from '../../../iconsList.js'
+import { SideMenuIcon } from '../../../iconsList.js'
 import './index.css'
 const { Sider } = Layout
 const { SubMenu } = Menu
 
-const menuListDemo = [
-    { title: '首页', key: '/home' },
-    { title: '用户管理', key: '/user', children: [{ title: '用户列表', key: '/userlist' }] },
-    { title: '新闻资讯', key: '/news' },
-    { title: '生活服务', key: '/life' },
-    { title: '健康管理', key: '/health' },
-    { title: '论坛', key: '/hoard' }
-]
 function SideMenu(props) {
-    // const [menuList, setMenuList] = useState([])
+    const [menuList, setMenuList] = useState([])
     const navigate = useNavigate()
     useEffect(() => {
-
+        axios.post('/admin/getRoleRights', qs.stringify({ roleid: 1 }), { headers: { Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAzNjkwNzMsImV4cCI6MTY1MDQwNTA3M30.2WZJb4Je9rgVf7u_pyCxiJvZZLZi1os10FTR7Udkrsc' } }).then(res => {
+            setMenuList(res.data.results);
+        })
     }, [])
     const selectKeys = window.location.pathname
     const openKeys = ['/' + selectKeys.split('/')[1]]
@@ -29,8 +25,8 @@ function SideMenu(props) {
             if (item.children?.length > 0)
                 return (
                     <SubMenu
-                        icon={SideMenu[item.title]}
-                        key={item.key}
+                        // icon={SideMenu[item.title]}
+                        key={item.href}
                         title={item.title}
                     >
                         {renderMenu(item.children)}
@@ -38,11 +34,11 @@ function SideMenu(props) {
                 )
             return (
                 <Menu.Item
-                    icon={SideMenu[item.title]}
-                    key={item.key}
+                    icon={SideMenuIcon[item.title]}
+                    key={item.href}
                     onClick={() => {
                         navigate('/blank')
-                        navigate(item.key)
+                        navigate(item.href)
                     }}
                 >
                     {item.title}
@@ -50,9 +46,8 @@ function SideMenu(props) {
             )
         })
     }
-
     return (
-        <Sider trigger={null} collapsible collapsed={props.isCollapsed}>
+        <Sider width={'230px'} trigger={null} collapsible collapsed={props.isCollapsed}>
             <div className="siderMenu">
                 {props.isCollapsed ? (
                     <div className="logo">老</div>
@@ -67,7 +62,7 @@ function SideMenu(props) {
                         selectedKeys={selectKeys}
                         defaultOpenKeys={openKeys}
                     >
-                        {renderMenu(menuListDemo)}
+                        {renderMenu(menuList)}
                     </Menu>
                 </div>
             </div>
@@ -75,6 +70,4 @@ function SideMenu(props) {
     )
 }
 
-export default connect((state) => ({ isCollapsed: state.IsCollapsed }), {
-
-})(SideMenu)
+export default connect((state) => ({ isCollapsed: state.IsCollapsed }), {})(SideMenu)
