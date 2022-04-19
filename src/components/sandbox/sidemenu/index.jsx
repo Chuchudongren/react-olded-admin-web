@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Layout, Menu } from 'antd'
-import axios from 'axios'
+// import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 // import { SideMenu } from '../../../iconsList.js'
@@ -17,7 +17,7 @@ const menuListDemo = [
     { title: '论坛', key: '/hoard' }
 ]
 function SideMenu(props) {
-    const [menuList, setMenuList] = useState([])
+    // const [menuList, setMenuList] = useState([])
     const navigate = useNavigate()
     useEffect(() => {
 
