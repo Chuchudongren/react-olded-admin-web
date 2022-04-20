@@ -1,20 +1,48 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/sandbox/home'
-import UserList from '../pages/sandbox/user'
-import News from '../pages/sandbox/news'
-import Life from '../pages/sandbox/life'
-import Health from '../pages/sandbox/health'
-import Hoard from '../pages/sandbox/hoard'
+import User from '../pages/sandbox/user'
+import NewsList from '../pages/sandbox/news/list'
+import NewsAdd from '../pages/sandbox/news/add'
+import Lawdynamic from '../pages/sandbox/life/lawdynamic'
+import Messagelist from '../pages/sandbox/life/messagelist'
+import Nessagereply from '../pages/sandbox/life/messagereply'
+import Servicelist from '../pages/sandbox/life/servicelist'
+import Servicetab from '../pages/sandbox/life/servicetab'
+import Voluntadd from '../pages/sandbox/life/voluntadd'
+import Voluntinfo from '../pages/sandbox/life/voluntinfo'
+import Voluntlist from '../pages/sandbox/life/voluntlist'
+import Cliniclist from '../pages/sandbox/health/cliniclist'
+import Clinicrecord from '../pages/sandbox/health/clinicrecord'
+import Hospital from '../pages/sandbox/health/hospital'
+import Msgadd from '../pages/sandbox/health/msgadd'
+import Msglist from '../pages/sandbox/health/msglist'
+import HoardCate from '../pages/sandbox/hoard/cate'
+import HoardCheck from '../pages/sandbox/hoard/check'
+import HoardList from '../pages/sandbox/hoard/list'
 export default function SandboxRouter() {
     return (
         <Routes>
             <Route path="/home" element={<Home />} />
-            <Route path="/userlist" element={<UserList />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/life" element={<Life />} />
-            <Route path="/health" element={<Health />} />
-            <Route path="/hoard" element={<Hoard />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/news/list" element={<NewsList />} />
+            <Route path="/news/add" element={<NewsAdd />} />
+            <Route path="/life/volunt/list" element={<Voluntlist />} />
+            <Route path="/life/volunt/add" element={<Voluntadd />} />
+            <Route path="/life/volunt/info" element={<Voluntinfo />} />
+            <Route path="/life/message/list" element={<Messagelist />} />
+            <Route path="/life/message/reply" element={<Nessagereply />} />
+            <Route path="/life/lawdynamic" element={<Lawdynamic />} />
+            <Route path="/life/service/list" element={<Servicelist />} />
+            <Route path="/life/service/tab" element={<Servicetab />} />
+            <Route path="/health/clinic/list" element={<Cliniclist />} />
+            <Route path="/health/clinic/record" element={<Clinicrecord />} />
+            <Route path="/health/hospital" element={<Hospital />} />
+            <Route path="/health/msg/add" element={<Msgadd />} />
+            <Route path="/health/msg/list" element={<Msglist />} />
+            <Route path="/hoard/cate" element={<HoardCate />} />
+            <Route path="/hoard/check" element={<HoardCheck />} />
+            <Route path="/hoard/list" element={<HoardList />} />
         </Routes>
     )
 }

@@ -13,14 +13,14 @@ function SideMenu(props) {
     const [menuList, setMenuList] = useState([])
     const navigate = useNavigate()
     useEffect(() => {
-        axios.post('/admin/getRoleRights', qs.stringify({ roleid: 1 }), { headers: { Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAzNjkwNzMsImV4cCI6MTY1MDQwNTA3M30.2WZJb4Je9rgVf7u_pyCxiJvZZLZi1os10FTR7Udkrsc' } }).then(res => {
+        axios.post('/admin/getRoleRights', qs.stringify({ roleid: 1 })).then(res => {
             setMenuList(res.data.results);
         })
     }, [])
     const selectKeys = window.location.pathname
     const openKeys = ['/' + selectKeys.split('/')[1]]
     const renderMenu = (menuList) => {
-        return menuList.map((item) => {
+        return menuList?.map((item) => {
             if (item.children?.length > 0)
                 return (
                     <SubMenu
