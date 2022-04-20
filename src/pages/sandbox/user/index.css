@@ -9,3 +9,29 @@
 th{
     font-size: 24px;
 }
+.editable-row  input{
+    font-size: 22px;
+}
+ .ant-select-selector{
+    height: 40px !important;
+}
+.ant-select-selector .ant-select-selection-item{
+    font-size: 22px;
+    line-height: 40px !important;
+}
+.ant-select-item-option-content{
+    font-size: 22px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.ant-modal div{
+    font-size: 22px;
+}
+.ant-modal span{
+    font-size: 22px;
+    line-height: 24px;
+}
+.ant-form label,input{
+    font-size: 22px !important;
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Input, Select, Switch, Form, Typography } from 'antd';
+import { Table, Input, Select, Modal, Switch, Button, Form, message, Typography } from 'antd';
 import axios from 'axios'
 import qs from 'qs'
 import './index.css'
@@ -19,7 +19,7 @@ const EditableCell = ({
             <Select.Option value="新闻资讯管理员">新闻资讯管理员</Select.Option>
             <Select.Option value="生活服务管理员">生活服务管理员</Select.Option>
             <Select.Option value="健康管理管理员">健康管理管理员</Select.Option>
-            <Select.Option value="生活服论坛管理员">生活服论坛管理员</Select.Option>
+            <Select.Option value="论坛管理员">论坛管理员</Select.Option>
         </Select>
         : <Input />;
     return (
@@ -48,8 +48,11 @@ const EditableCell = ({
 
 export default function UserList() {
     const [form] = Form.useForm();
+    const [form_modal] = Form.useForm();
     const [data, setData] = useState([]);
     const [editingKey, setEditingKey] = useState('');
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
     useEffect(() => {
         axios.get('/admin/user').then(res => {
             setData(res.data.results)
@@ -65,7 +68,6 @@ export default function UserList() {
             rolename: '',
             ...record,
         });
-        console.log(record);
         setEditingKey(record.username);
     };
 
@@ -90,7 +92,7 @@ export default function UserList() {
                 setEditingKey('');
             }
         } catch (errInfo) {
-            console.log('Validate Failed:', errInfo);
+            console.log('失败：', errInfo);
         }
     };
 
@@ -133,14 +135,17 @@ export default function UserList() {
                         </Typography.Link>
                     </span>
                 ) : (
-                    record.username !== 'admin' &&
-                    <>
-                        <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                            编辑
-                        </Typography.Link>
-                        &nbsp;
-                        <Switch checked={record.state === 0} onChange={() => disabledUser(record)} />
-                    </>
+                    record.username !== 'admin' ?
+                        <>
+                            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+                                编辑
+                            </Typography.Link>
+                            &nbsp;
+                            <Switch checked={record.state === 0} onChange={() => disabledUser(record)} />
+                        </> :
+                        <>
+                            <Button style={{ width: '120px', height: '40px', fontSize: '20px' }} onClick={() => { showModal() }}>添加用户</Button>
+                        </>
 
 
                 );
@@ -173,24 +178,79 @@ export default function UserList() {
         axios.post('/admin/disabledUser', qs.stringify({ state: record.state, adminid: record.adminid }))
         setData(newData);
     }
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        const datas = form_modal.getFieldsValue();
+        axios.post('/admin/addAdmin', qs.stringify({ ...datas })).then(res => {
+            if (res.data.status === 200) {
+                message.success(res.data.message)
+                const newData = [...data];
+                newData.push({ ...res.data.newData })
+                setData(newData)
+            } else {
+                message.info(res.data.message)
+            }
+        })
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
     return (
-        <Form form={form} component={false}>
-            <Table
-                components={{
-                    body: {
-                        cell: EditableCell,
-                    },
-                }}
-                bordered
-                rowKey={item => item.adminid}
-                dataSource={data}
-                columns={mergedColumns}
-                rowClassName="editable-row"
-                pagination={{
-                    onChange: cancel,
-                    pageSize: 7
-                }}
-            />
-        </Form>
+        <>
+            <Form form={form} component={false}>
+                <Table
+                    components={{
+                        body: {
+                            cell: EditableCell,
+                        },
+                    }}
+                    bordered
+                    rowKey={item => item.adminid}
+                    dataSource={data}
+                    columns={mergedColumns}
+                    rowClassName="editable-row"
+                    pagination={{
+                        onChange: cancel,
+                        pageSize: 7
+                    }}
+                />
+            </Form>
+            <Modal title="添加用户" cancelText='取消' okText='添加' visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                <Form
+                    form={form_modal}
+                    labelCol={{
+                        span: 4,
+                    }}
+                    wrapperCol={{
+                        span: 14,
+                    }}
+                    initialValues={{
+                        size: 'default',
+                    }}
+                >
+                    <Form.Item label="用户名" name="username">
+                        <Input />
+                    </Form.Item>
+                    <Form.Item label="密码" name="password">
+                        <Input />
+                    </Form.Item>
+                    <Form.Item label="权限" name="rolename">
+                        <Select>
+                            <Select.Option value="超级管理员">超级管理员</Select.Option>
+                            <Select.Option value="新闻资讯管理员">新闻资讯管理员</Select.Option>
+                            <Select.Option value="生活服务管理员">生活服务管理员</Select.Option>
+                            <Select.Option value="健康管理管理员">健康管理管理员</Select.Option>
+                            <Select.Option value="论坛管理员">论坛管理员</Select.Option>
+                        </Select>
+                    </Form.Item>
+                </Form>
+            </Modal>
+        </>
     );
 }
