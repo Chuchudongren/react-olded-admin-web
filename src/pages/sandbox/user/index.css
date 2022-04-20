@@ -3,6 +3,9 @@
     top: 100%;
     font-size: 20px;
 }
-.editable-row{
-    font-size: 20px;
+.editable-row {
+    font-size: 22px;
+}
+th{
+    font-size: 24px;
 }
