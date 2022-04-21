@@ -4,6 +4,8 @@ import Home from '../pages/sandbox/home'
 import User from '../pages/sandbox/user'
 import NewsList from '../pages/sandbox/news/list'
 import NewsAdd from '../pages/sandbox/news/add'
+import NewsPreview from '../pages/sandbox/news/preview'
+import NewsUpdate from '../pages/sandbox/news/update'
 import Lawdynamic from '../pages/sandbox/life/lawdynamic'
 import Messagelist from '../pages/sandbox/life/messagelist'
 import Nessagereply from '../pages/sandbox/life/messagereply'
@@ -27,6 +29,8 @@ export default function SandboxRouter() {
             <Route path="/user" element={<User />} />
             <Route path="/news/list" element={<NewsList />} />
             <Route path="/news/add" element={<NewsAdd />} />
+            <Route path="/news/preview/:newsid" element={<NewsPreview />} />
+            <Route path="/news/update/:newsid" element={<NewsUpdate />} />
             <Route path="/life/volunt/list" element={<Voluntlist />} />
             <Route path="/life/volunt/add" element={<Voluntadd />} />
             <Route path="/life/volunt/info" element={<Voluntinfo />} />

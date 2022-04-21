@@ -14,7 +14,6 @@ axios.defaults.headers['Authorization'] = ''
 axios.interceptors.request.use(
   function (config) {
     const token = qs.parse(localStorage.getItem('token'))
-    console.log(token);
     config.headers.Authorization = 'Bearer ' + token.token
     return config
   },

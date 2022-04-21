@@ -12,7 +12,7 @@ th{
 .editable-row  input{
     font-size: 22px;
 }
- .ant-select-selector{
+.ant-select-selector{
     height: 40px !important;
 }
 .ant-select-selector .ant-select-selection-item{
