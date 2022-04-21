@@ -1,0 +1,12 @@
+.wrapperClassName{
+    height: 350px;
+    width: 100%;
+}
+.editorClassName{
+    height: 250px;
+    width: 100%;
+    color: #cf10cf;
+}
+.editorClassName::-webkit-scrollbar{
+    display: none;
+}

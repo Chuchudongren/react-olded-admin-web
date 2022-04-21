@@ -10,10 +10,16 @@
     "antd": "^4.19.5",
     "axios": "^0.26.1",
     "craco-less": "^2.0.0",
+    "cross-env": "^7.0.3",
+    "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
+    "html-to-draftjs": "^1.5.0",
+    "http-proxy-middleware": "2.0.3",
     "nprogress": "^0.2.0",
     "qs": "^6.10.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-draft-wysiwyg": "^1.14.7",
     "react-redux": "^8.0.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
@@ -24,7 +30,7 @@
     "webpack": "^5.72.0"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "cross-env PORT=3002 craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"

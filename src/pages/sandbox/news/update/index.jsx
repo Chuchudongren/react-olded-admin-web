@@ -12,15 +12,15 @@ import {
 } from 'antd'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import qs from 'qs'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import NewsEditor from '../../../../components/sandbox/newseditor'
-import './index.css'
 const { Option } = Select
 const { Step } = Steps
 const { TextArea } = Input;
 export default function Add() {
     const navigate = useNavigate()
+    const params = useParams()
     const [current, setCurrent] = useState(0)
     const [categoryList, setCategoryList] = useState([])
     const [formInfo, setFormInfo] = useState([])
@@ -51,10 +51,10 @@ export default function Add() {
         setCurrent(current - 1)
     }
     const handleSave = () => {
-        axios.post('/admin/addNews', qs.stringify({ content, pic: imageUrl, ...formInfo })).then(res => {
+        axios.post('/admin/addNews', qs.stringify({ newsid: params.newsid, content, pic: imageUrl, ...formInfo })).then(res => {
             if (res.data.status === 200) {
                 notification.info({
-                    message: `通知: 发布成功!`,
+                    message: `通知: ${res.data.message}!`,
                     description: `您可以到新闻列表中查看您的新闻`,
                     placement: 'bottomRight',
                 })
@@ -64,6 +64,15 @@ export default function Add() {
     }
 
     useEffect(() => {
+        axios.post('/admin/getNewsById', qs.stringify({ newsid: params.newsid })).then(res => {
+            NewsForm.current.setFieldsValue({
+                ...res.data.results,
+                categoryId: res.data.results.categoryid
+            })
+            setImageUrl(res.data.results.pic)
+            setContent(res.data.results.content)
+
+        })
         axios.get('/admin/getCategory').then((res) => {
             setCategoryList(res.data.results)
         })
@@ -179,7 +188,7 @@ export default function Add() {
                 </div>
                 {/* 步骤2 内容 */}
                 <div className={current === 1 ? '' : 'hidden'}>
-                    <NewsEditor getContent={getContent}></NewsEditor>
+                    <NewsEditor content={content} getContent={getContent}></NewsEditor>
                 </div>
                 {/* 步骤3 内容 */}
                 <div className={current === 2 ? '' : 'hidden'}>
