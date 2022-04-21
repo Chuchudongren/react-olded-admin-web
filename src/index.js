@@ -6,7 +6,6 @@ import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import './base.css'
 import './util/http.js'
-
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>

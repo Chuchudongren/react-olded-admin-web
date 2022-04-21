@@ -13,10 +13,15 @@ const { SubMenu } = Menu
 function SideMenu(props) {
     const [menuList, setMenuList] = useState([])
     const navigate = useNavigate()
+    const token = qs.parse(localStorage.getItem('token'))
     useEffect(() => {
-        axios.post('/admin/getRoleRights', qs.stringify({ roleid: 1 })).then(res => {
-            setMenuList(res.data.results);
-        })
+        if (!localStorage.getItem('token')) {
+            navigate('/login')
+        } else {
+            axios.post('/admin/getRoleRights', qs.stringify({ roleid: token.roleid })).then(res => {
+                setMenuList(res.data.results);
+            })
+        }
     }, [])
     const selectKeys = window.location.pathname
     const openKeys = ['/' + selectKeys.split('/')[1]]
