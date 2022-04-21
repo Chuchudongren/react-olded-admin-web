@@ -6,12 +6,14 @@ import SideMenu from '../../components/sandbox/sidemenu'
 import TopHeader from '../../components/sandbox/topheader'
 import SandboxRouter from '../../router/sandboxRouter'
 import './index.css'
+
 const { Content } = Layout
 export default function SandBox() {
     Nprogress.start()
     useEffect(() => {
         Nprogress.done()
     })
+
     return (
         <Layout>
             <SideMenu />
