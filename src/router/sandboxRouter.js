@@ -12,6 +12,8 @@ import Nessagereply from '../pages/sandbox/life/messagereply'
 import Servicelist from '../pages/sandbox/life/servicelist'
 import Servicetab from '../pages/sandbox/life/servicetab'
 import Voluntadd from '../pages/sandbox/life/voluntadd'
+import VoluntUpdate from '../pages/sandbox/life/voluntupdate'
+import VoluntPreview from '../pages/sandbox/life/voluntpreview'
 import Voluntinfo from '../pages/sandbox/life/voluntinfo'
 import Voluntlist from '../pages/sandbox/life/voluntlist'
 import Cliniclist from '../pages/sandbox/health/cliniclist'
@@ -33,6 +35,8 @@ export default function SandboxRouter() {
             <Route path="/news/update/:newsid" element={<NewsUpdate />} />
             <Route path="/life/volunt/list" element={<Voluntlist />} />
             <Route path="/life/volunt/add" element={<Voluntadd />} />
+            <Route path="/life/volunt/update/:voluntid" element={<VoluntUpdate />} />
+            <Route path="/life/volunt/preview/:voluntid" element={<VoluntPreview />} />
             <Route path="/life/volunt/info" element={<Voluntinfo />} />
             <Route path="/life/message/list" element={<Messagelist />} />
             <Route path="/life/message/reply" element={<Nessagereply />} />

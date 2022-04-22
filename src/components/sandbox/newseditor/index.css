@@ -6,6 +6,7 @@
     height: 250px;
     width: 100%;
     color: #cf10cf;
+    font-size: 20px !important;
 }
 .editorClassName::-webkit-scrollbar{
     display: none;

@@ -35,3 +35,7 @@ th{
 .ant-form label,input{
     font-size: 22px !important;
 }
+
+.ant-modal-close-x{
+    padding-top:0.6em;
+}

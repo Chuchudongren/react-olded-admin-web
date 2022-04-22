@@ -5,29 +5,37 @@ import {
     Button,
     Form,
     Input,
-    Select,
     message,
     Upload,
     notification,
+    Row,
+    Col
 } from 'antd'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import qs from 'qs'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import NewsEditor from '../../../../components/sandbox/newseditor'
-const { Option } = Select
 const { Step } = Steps
-const { TextArea } = Input;
-export default function Add() {
+export default function VoluntAdd() {
     const navigate = useNavigate()
     const params = useParams()
     const [current, setCurrent] = useState(0)
-    const [categoryList, setCategoryList] = useState([])
     const [formInfo, setFormInfo] = useState([])
     const [imageUrl, setImageUrl] = useState('')
     const [loading, setLoading] = useState(false)
     const [content, setContent] = useState([])
-
+    const NewsForm = useRef(null)
+    useEffect(() => {
+        axios.post('/admin/getVoluntById', qs.stringify({ voluntid: params.voluntid })).then(res => {
+            NewsForm.current.setFieldsValue({
+                ...res.data.results,
+            })
+            setImageUrl(res.data.results.pic)
+            setContent(res.data.results.content)
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     const next = () => {
         if (current === 0) {
             NewsForm.current
@@ -41,7 +49,7 @@ export default function Add() {
                 })
         } else {
             if (content.length === 0 || content.trim() === '<p></p>') {
-                message.error('新闻内容部分不能为空!')
+                message.error('志愿者活动内容部分不能为空!')
             } else {
                 setCurrent(current + 1)
             }
@@ -51,41 +59,21 @@ export default function Add() {
         setCurrent(current - 1)
     }
     const handleSave = () => {
-        axios.post('/admin/addNews', qs.stringify({ newsid: params.newsid, content, pic: imageUrl, ...formInfo })).then(res => {
+        axios.post('/admin/addVolunt', qs.stringify({ content, pic: imageUrl, ...formInfo })).then(res => {
             if (res.data.status === 200) {
                 notification.info({
                     message: `通知: ${res.data.message}!`,
-                    description: `您可以到新闻列表中查看您的新闻`,
+                    description: `您可以到志愿者活动管理中查看您的新闻`,
                     placement: 'bottomRight',
                 })
             }
         })
-        navigate('/news/list')
+        navigate('/life/volunt/list')
     }
-
-    useEffect(() => {
-        axios.post('/admin/getNewsById', qs.stringify({ newsid: params.newsid })).then(res => {
-            NewsForm.current.setFieldsValue({
-                ...res.data.results,
-                categoryId: res.data.results.categoryid
-            })
-            setImageUrl(res.data.results.pic)
-            setContent(res.data.results.content)
-
-        })
-        axios.get('/admin/getCategory').then((res) => {
-            setCategoryList(res.data.results)
-        })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    const NewsForm = useRef(null)
-
     // 从 组件中获得 富文本内容
     const getContent = (contents) => {
         setContent(contents)
     }
-
     function beforeUpload(file) {
         const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
         if (!isJpgOrPng) {
@@ -111,13 +99,13 @@ export default function Add() {
         <div style={{ padding: '10px' }}>
             <PageHeader
                 className="site-page-header"
-                title="撰写新闻"
-                subTitle="这里添加新闻"
+                title="发布志愿互动"
+                subTitle="这里发布志愿活动"
             />
             <Steps current={current}>
-                <Step title="基本信息" description="新闻标题/新闻分类" />
-                <Step title="新闻内容" description="新闻主体内容" />
-                <Step title="新闻提交" description="发布" />
+                <Step title="基本信息" description="标题/时间/地点" />
+                <Step title="活动内容" description="内容" />
+                <Step title="志愿者活动发布" description="发布" />
             </Steps>
             {/* 主体内容 */}
 
@@ -126,47 +114,83 @@ export default function Add() {
                 <div className={current === 0 ? '' : 'hidden'}>
                     <Form
                         name="basic"
-                        labelCol={{ span: 2 }}
-                        wrapperCol={{ span: 18 }}
+                        labelCol={{ span: 4 }}
+                        wrapperCol={{ span: 20 }}
                         // onFinish={onFinish}
                         ref={NewsForm}
                     >
-                        <Form.Item
-                            label="新闻标题"
-                            name="title"
-                            rules={[{ required: true, message: '请输入新闻标题!' }]}
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            label="新闻分类"
-                            name="categoryId"
-                            rules={[{ required: true, message: '请输入新闻分类!' }]}
-                        >
-                            <Select>
-                                {categoryList.map((item) => {
-                                    return (
-                                        <Option key={item.categoryid} value={item.categoryid}>
-                                            {item.categoryname}
-                                        </Option>
-                                    )
-                                })}
-                            </Select>
-                        </Form.Item>
-                        <Form.Item
-                            label="新闻纪要"
-                            name="summary"
-                            rules={[{ required: true, message: '请输入新闻纪要!' }]}
-                        >
-                            <TextArea showCount maxLength={120} style={{ height: 120 }} />
-                        </Form.Item>
-                        <Form.Item
-                            label="来源"
-                            name="source"
-                            rules={[{ required: true, message: '请输入新闻来源!' }]}
-                        >
-                            <Input />
-                        </Form.Item>
+                        <Row gutter={24}>
+                            <Col span={24} >
+                                <Form.Item
+                                    label="标题"
+                                    name="title"
+                                    rules={[{ required: true, message: '请输入标题!' }]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row gutter={24}>
+                            <Col span={12} >
+                                <Form.Item
+                                    label="地点"
+                                    name="space"
+                                    rules={[{ required: true, message: '请输入地点!' }]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                            </Col>
+                            <Col span={12} >
+                                <Form.Item
+                                    label="团队名称"
+                                    name="teamname"
+                                    rules={[{ required: true, message: '请输入团队名称!' }]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row gutter={24}>
+                            <Col span={12} >
+                                <Form.Item
+                                    label="开始时间"
+                                    name="begintime"
+                                    rules={[{ required: true, message: '请输入开始时间!' }]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                            </Col>
+                            <Col span={12}  >
+                                <Form.Item
+                                    label="结束时间"
+                                    name="finishtime"
+                                    rules={[{ required: true, message: '请输入结束时间!' }]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row gutter={24}>
+                            <Col span={12} >
+                                <Form.Item
+                                    label="联系电话"
+                                    name="tel"
+                                    rules={[{ required: true, message: '请输入联系电话!' }]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                            </Col>
+                            <Col span={12}  >
+                                <Form.Item
+                                    label="活动类型"
+                                    name="classification"
+                                    rules={[{ required: true, message: '请输入活动类型!' }]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+
                         <div>
                             <span className="pic_text">上传新闻展示图片</span>
                             <Upload

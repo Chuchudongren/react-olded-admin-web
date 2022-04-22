@@ -14,7 +14,6 @@ function SideMenu(props) {
     const navigate = useNavigate()
     useEffect(() => {
         const token = qs.parse(sessionStorage.getItem('token'))
-        console.log(token)
         if (!sessionStorage.getItem('token')) {
             navigate('/login')
         } else {
@@ -22,6 +21,7 @@ function SideMenu(props) {
                 setMenuList(res.data.results);
             })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const selectKeys = window.location.pathname
     const openKeys = ['/' + selectKeys.split('/')[1]]
