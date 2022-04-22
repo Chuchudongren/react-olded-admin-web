@@ -8,7 +8,7 @@ import { combineReducers } from 'redux'
 import IsCollapsed from './CollapsedReducer.js'
 
 // 持久化的引用
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import storage from 'redux-persist/lib/storage' // defaults to sessionStorage for web
 // 用来定义保存状态的持久化信息
 export const persistConfig = {
     key: 'redux_state',

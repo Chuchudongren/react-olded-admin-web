@@ -13,7 +13,7 @@ axios.defaults.headers['Authorization'] = ''
 // 添加一个请求拦截器
 axios.interceptors.request.use(
   function (config) {
-    const token = qs.parse(localStorage.getItem('token'))
+    const token = qs.parse(sessionStorage.getItem('token'))
     config.headers.Authorization = 'Bearer ' + token.token
     return config
   },
