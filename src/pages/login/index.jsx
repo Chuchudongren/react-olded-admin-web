@@ -12,7 +12,7 @@ export default function Login(props) {
         axios.post('/admin/login', qs.stringify({ username: data.username, password: data.password })).then(res => {
             if (res.data.status === 200) {
                 message.success(res.data.message)
-                localStorage.setItem('token', qs.stringify(res.data.token))
+                sessionStorage.setItem('token', qs.stringify(res.data.token))
                 navigate('/')
             } else message.info(res.data.message)
         })

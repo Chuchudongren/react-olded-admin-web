@@ -20,7 +20,7 @@ function TopHeader(props) {
             <Menu.Item
                 key="2"
                 onClick={() => {
-                    localStorage.removeItem('token')
+                    sessionStorage.removeItem('token')
                     navigate('/login')
                 }}
                 danger

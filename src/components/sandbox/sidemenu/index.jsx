@@ -12,9 +12,10 @@ const { SubMenu } = Menu
 function SideMenu(props) {
     const [menuList, setMenuList] = useState([])
     const navigate = useNavigate()
-    const token = qs.parse(localStorage.getItem('token'))
     useEffect(() => {
-        if (!localStorage.getItem('token')) {
+        const token = qs.parse(sessionStorage.getItem('token'))
+        console.log(token)
+        if (!sessionStorage.getItem('token')) {
             navigate('/login')
         } else {
             axios.post('/admin/getRoleRights', qs.stringify({ roleid: token.roleid })).then(res => {
