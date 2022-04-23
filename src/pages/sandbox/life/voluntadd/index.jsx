@@ -182,7 +182,7 @@ export default function VoluntAdd() {
                         </Row>
 
                         <div>
-                            <span className="pic_text">上传新闻展示图片</span>
+                            <span className="pic_text">上传志愿活动展示图片</span>
                             <Upload
                                 name="uploadPic"
                                 listType="picture-card"
