@@ -45,6 +45,7 @@ export default function VoluntList() {
             render: (item) => {
                 return (
                     item.isvolunt === 1 ?
+
                         <Button
                             danger
                             onClick={() => {
@@ -53,15 +54,26 @@ export default function VoluntList() {
                             shape="circle"
                             icon={<DeleteOutlined />}
                         />
-                        : <Button
-                            type='primary'
-                            onClick={() => {
-                                setCurrentItem(item)
-                                setIsModalVisible(true)
-                            }}
-                            shape="circle"
-                            icon={<EyeOutlined />}
-                        />
+                        : <>
+                            <Button
+                                type='primary'
+                                onClick={() => {
+                                    setCurrentItem(item)
+                                    setIsModalVisible(true)
+                                }}
+                                shape="circle"
+                                icon={<EyeOutlined />}
+                            />
+                            &nbsp;&nbsp;
+                            <Button
+                                danger
+                                onClick={() => {
+                                    confirmMethod(item)
+                                }}
+                                shape="circle"
+                                icon={<DeleteOutlined />}
+                            />
+                        </>
                 )
             },
         },

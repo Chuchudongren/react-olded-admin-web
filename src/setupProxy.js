@@ -9,4 +9,11 @@ module.exports = function (app) {
             changeOrigin: true,
         })
     );
+    app.use(
+        '/uploadRead',
+        createProxyMiddleware({
+            target: 'http://127.0.0.1:8003/upload',
+            changeOrigin: true,
+        })
+    );
 };

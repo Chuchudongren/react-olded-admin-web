@@ -8,7 +8,6 @@ import NewsPreview from '../pages/sandbox/news/preview'
 import NewsUpdate from '../pages/sandbox/news/update'
 import Lawdynamic from '../pages/sandbox/life/lawdynamic'
 import Messagelist from '../pages/sandbox/life/messagelist'
-import Nessagereply from '../pages/sandbox/life/messagereply'
 import Servicelist from '../pages/sandbox/life/servicelist'
 import Servicetab from '../pages/sandbox/life/servicetab'
 import Voluntadd from '../pages/sandbox/life/voluntadd'
@@ -39,7 +38,6 @@ export default function SandboxRouter() {
             <Route path="/life/volunt/preview/:voluntid" element={<VoluntPreview />} />
             <Route path="/life/volunt/info" element={<Voluntinfo />} />
             <Route path="/life/message/list" element={<Messagelist />} />
-            <Route path="/life/message/reply" element={<Nessagereply />} />
             <Route path="/life/lawdynamic" element={<Lawdynamic />} />
             <Route path="/life/service/list" element={<Servicelist />} />
             <Route path="/life/service/tab" element={<Servicetab />} />
