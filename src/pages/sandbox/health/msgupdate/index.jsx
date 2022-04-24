@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
     PageHeader,
     Steps,
@@ -10,16 +10,26 @@ import {
     notification,
 } from 'antd'
 import qs from 'qs'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import NewsEditor from '../../../../components/sandbox/newseditor'
 const { Option } = Select
 const { Step } = Steps
 const { TextArea } = Input;
 export default function Add() {
+    const params = useParams()
     const [current, setCurrent] = useState(0)
     const [formInfo, setFormInfo] = useState([])
     const [content, setContent] = useState([])
-
+    useEffect(() => {
+        axios.post('/admin/getHealthMsgById', qs.stringify({ healthmsgid: params.healthmsgid })).then(res => {
+            NewsForm.current.setFieldsValue({
+                ...res.data.results,
+            })
+            setContent(res.data.results.content)
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     const next = () => {
         if (current === 0) {
             NewsForm.current
@@ -43,10 +53,10 @@ export default function Add() {
         setCurrent(current - 1)
     }
     const handleSave = () => {
-        axios.post('/admin/addHealthMsg', qs.stringify({ content, ...formInfo })).then(res => {
+        axios.post('/admin/updateHealthMsg', qs.stringify({ healthmsgid: params.healthmsgid, content, ...formInfo })).then(res => {
             if (res.data.status === 200) {
                 notification.info({
-                    message: `通知: 发布成功!`,
+                    message: `通知: 修改成功!`,
                     description: `您可以到健康资讯列表中查看您的资讯`,
                     placement: 'bottomRight',
                 })
@@ -107,14 +117,14 @@ export default function Add() {
                             name="intro"
                             rules={[{ required: true, message: '请输入资讯纪要!' }]}
                         >
-                            <TextArea showCount maxLength={120} style={{ height: 120 }} />
+                            <TextArea showCount maxLength={220} style={{ height: 200 }} />
                         </Form.Item>
                     </Form>
 
                 </div>
                 {/* 步骤2 内容 */}
                 <div className={current === 1 ? '' : 'hidden'}>
-                    <NewsEditor getContent={getContent}></NewsEditor>
+                    <NewsEditor content={content} getContent={getContent}></NewsEditor>
                 </div>
                 {/* 步骤3 内容 */}
                 <div className={current === 2 ? '' : 'hidden'}>

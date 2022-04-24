@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Input, Table, Modal, Form, message, Select, Descriptions } from 'antd'
+import { Button, Input, Table, Modal, Form, message, Select } from 'antd'
 import axios from 'axios'
 import qs from 'qs'
 // import './index.css'

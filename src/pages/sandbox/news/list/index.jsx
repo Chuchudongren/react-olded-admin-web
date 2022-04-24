@@ -117,7 +117,6 @@ export default function NewsList() {
             }
             return data
         })
-        console.log(item);
         axios.post('/admin/setHotNews', qs.stringify({ ...item })).then(res => {
             if (res.data.status === 200) message.success(res.data.message)
             else message.error(res.data.message)

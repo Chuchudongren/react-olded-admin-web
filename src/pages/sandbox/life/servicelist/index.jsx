@@ -145,7 +145,7 @@ export default function MessageList() {
     }
     const handleOk = () => {
         const formdata = form_modal.getFieldsValue()
-        if (Object.keys(currentItem).length === 0) {
+        if (Object.keys(currentItem).length === 0 && !preview) {
             let newData = [...dataSource]
             axios.post('/admin/addService', qs.stringify({ ...formdata, pic: imageUrl })).then(res => {
                 if (res.data.status === 200) {
@@ -154,7 +154,7 @@ export default function MessageList() {
                     setdataSource(newData)
                 }
             })
-        } else {
+        } else if (!preview) {
             axios.post('/admin/UpdateService', qs.stringify({ servicelistid: currentItem.servicelistid, ...formdata, pic: imageUrl })).then(res => {
                 if (res.data.status === 200) message.success(res.data.message)
                 axios.get('/admin/getServiceList').then(res => {
