@@ -154,7 +154,6 @@ export default function VoluntList() {
     }
     const handleOk = () => {
         const status = form_modal.getFieldsValue().status
-        console.log(status);
         axios.post('/admin/setVoluntStatus', qs.stringify({ voluntid: currentItem.voluntid, status })).then(res => {
             if (res.data.status === 200) {
                 message.success(res.data.message)

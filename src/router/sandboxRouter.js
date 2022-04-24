@@ -20,6 +20,7 @@ import Clinicrecord from '../pages/sandbox/health/clinicrecord'
 import Hospital from '../pages/sandbox/health/hospital'
 import Msgadd from '../pages/sandbox/health/msgadd'
 import Msglist from '../pages/sandbox/health/msglist'
+import MsgUpdate from '../pages/sandbox/health/msgupdate'
 import HoardCate from '../pages/sandbox/hoard/cate'
 import HoardCheck from '../pages/sandbox/hoard/check'
 import HoardList from '../pages/sandbox/hoard/list'
@@ -46,6 +47,7 @@ export default function SandboxRouter() {
             <Route path="/health/hospital" element={<Hospital />} />
             <Route path="/health/msg/add" element={<Msgadd />} />
             <Route path="/health/msg/list" element={<Msglist />} />
+            <Route path="/health/msg/update/:healthmsgid" element={<MsgUpdate />} />
             <Route path="/hoard/cate" element={<HoardCate />} />
             <Route path="/hoard/check" element={<HoardCheck />} />
             <Route path="/hoard/list" element={<HoardList />} />
