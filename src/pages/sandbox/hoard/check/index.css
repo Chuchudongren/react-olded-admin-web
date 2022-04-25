@@ -1,0 +1,17 @@
+.topicfollowdata{
+    margin: 20px 0;
+}
+.hoard_turn_down:hover{
+    cursor: pointer;    
+}
+.hoard_delete_btn{
+    position: absolute;
+    right: 10px;
+    top: -60px;
+}
+.hoar_content{
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 100px;
+    padding: 2px 5px;
+}
