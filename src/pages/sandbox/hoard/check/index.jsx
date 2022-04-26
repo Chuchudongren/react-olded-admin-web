@@ -37,7 +37,6 @@ function HoardDetail() {
         e.target.parentNode.nextSibling.className = e.target.parentNode.nextSibling.className === 'topicfollowdata' ? 'topicfollowdata hidden' : 'topicfollowdata'
     }
     const HandleDelete = (...args) => {
-        console.log(args);
         let g = args.length
         switch (g) {
             case 1:
@@ -122,12 +121,12 @@ function HoardDetail() {
                         </Descriptions>
                         <Descriptions column={1}>
                             <Descriptions.Item label="内容">
-                                <div dangerouslySetInnerHTML={{ __html: allData.content }}></div>
+                                <div className="hoar_content" dangerouslySetInnerHTML={{ __html: allData.content }}></div>
                             </Descriptions.Item>
                         </Descriptions>
                         {allData.topicfollowdata?.length > 0 ? allData.topicfollowdata.map(item =>
                             <div key={item.topicfollowid === undefined ? item : item.topicfollowid}>
-                                <Divider onClick={(e) => handlePut(e)} className="hoard_turn_down" style={{ fontSize: '20px' }}>查看跟帖</Divider>
+                                <Divider onClick={(e) => handlePut(e)} className="hoard_turn_down" style={{ fontSize: '20px' }}>查看跟帖{item.topicfollowid}</Divider>
                                 <div ref={tipicfollow} className="topicfollowdata hidden">
                                     <Descriptions column={3}>
                                         <Descriptions.Item label="跟帖ID">
@@ -151,7 +150,7 @@ function HoardDetail() {
                                     <div style={{ marginLeft: '220px' }}>
                                         {item.commentdata?.length > 0 ? item.commentdata.map(item_comment =>
                                             <div key={item_comment.topiccommentid}>
-                                                <Divider onClick={(e) => handlePut(e)} className="hoard_turn_down" style={{ fontSize: '20px' }}>查看评论</Divider>
+                                                <Divider onClick={(e) => handlePut(e)} className="hoard_turn_down" style={{ fontSize: '20px' }}>查看评论{item_comment.topiccommentid}</Divider>
                                                 <div ref={comment} className="hidden" >
                                                     <Descriptions column={3}>
                                                         <Descriptions.Item label="评论ID">
@@ -175,7 +174,7 @@ function HoardDetail() {
                                                     <div style={{ marginLeft: '100px' }}>
                                                         {item_comment.sonComment?.length > 0 ? item_comment.sonComment.map(item_commentson =>
                                                             <div key={item_commentson.topiccommentid}>
-                                                                <Divider onClick={(e) => handlePut(e)} className="hoard_turn_down" style={{ fontSize: '20px' }}>查看评论</Divider>
+                                                                <Divider onClick={(e) => handlePut(e)} className="hoard_turn_down" style={{ fontSize: '20px' }}>查看评论{item_commentson.topiccommentid}</Divider>
                                                                 <div ref={commentSon} className="hidden" >
                                                                     <Descriptions column={3}>
                                                                         <Descriptions.Item label="评论ID">
