@@ -19,7 +19,11 @@ function SideMenu(props) {
             navigate('/login')
         } else {
             axios.post('/admin/getRoleRights', qs.stringify({ roleid: token.roleid })).then(res => {
-                setMenuList(res.data.results);
+                if (res.data.status === 400) {
+                    navigate('/login')
+                } else {
+                    setMenuList(res.data.results);
+                }
             })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

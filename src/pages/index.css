@@ -5,3 +5,18 @@
 .ant-input-status-success{
     font-size: 18px !important;
 }
+.ant-divider::before{
+    border-width: 2px !important;
+    border-color: rgb(148, 148, 148) !important;
+}
+.ant-divider::after{
+    border-width: 2px !important;
+    border-color: rgb(148, 148, 148) !important;
+}
+.ant-list-header{
+    font-size: 20px;
+    font-weight: 600;
+}
+.ant-list-item {
+    font-size: 18px;
+}

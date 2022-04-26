@@ -1,0 +1,70 @@
+.news_echars1{
+    margin: 40px 20px;
+    padding: 20px;
+    border: 1px solid orange;
+    float: left;
+}
+.news_echars2{
+    margin: 40px 20px;
+    padding: 20px;
+    border: 1px solid orange;
+    float: left;
+}
+.life_row1{
+    overflow: hidden;
+}
+.life_echarts1{
+    float: left;
+    width: 800px;
+    height: 500px;
+    margin: 40px 20px;
+}
+.life_echarts2{
+    float: left;
+    width: 380px;
+    height: 380px;
+    margin: 60px 0 0 20px;
+}
+.life_echarts3{
+    border: 1px solid rgb(177, 177, 177);
+    width: 1260px;
+    height: 600px;
+    padding: 20px;
+}
+.Health_echerts1{
+    float: left;
+    margin: 20px 0 0 0;
+    width: 500px;
+    height: 400px;
+}
+.Health_echerts2{
+    margin: 20px 0 0 20px;
+    float: left;
+    width: 700px;
+    height: 400px;
+}
+.Hoard_echerts1{
+    margin: 20px;
+    float: left;
+    width: 600px;
+    height: 500px;
+    border: 1px solid rgb(0, 195, 255);
+    padding: 20px;
+}
+.Hoard_right{
+    float: left;
+    width: 600px;
+}
+.Hoard_span{
+    float: right;
+}
+.Hoard_topic{
+    padding-left:10px !important;
+    padding-right:10px !important;
+    border-radius: 10px;
+}
+.Hoard_topic:hover{
+    cursor: pointer;
+    background-color: rgba(223, 223, 223, 0.411);
+
+}

@@ -49,7 +49,7 @@ export default function SandboxRouter() {
             <Route path="/health/msg/list" element={<Msglist />} />
             <Route path="/health/msg/update/:healthmsgid" element={<MsgUpdate />} />
             <Route path="/hoard/cate" element={<HoardCate />} />
-            <Route path="/hoard/check" element={<HoardCheck />} />
+            <Route path="/hoard/check/:topicid" element={<HoardCheck />} />
             <Route path="/hoard/list" element={<HoardList />} />
             <Route path="/" element={<Home />} />
         </Routes>

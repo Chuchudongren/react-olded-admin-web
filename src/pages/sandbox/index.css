@@ -13,3 +13,6 @@
   .site-layout-background::-webkit-scrollbar{
     display: none;
   }
+  .ant-descriptions-item-label,.ant-descriptions-item-content{
+    font-size: 18px !important;
+  }

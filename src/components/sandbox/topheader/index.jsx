@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import qs from 'qs'
+import axios from 'axios'
 import {
     LeftSquareOutlined,
     RightSquareOutlined,
@@ -10,10 +12,15 @@ import { Menu, Dropdown, Layout, Avatar } from 'antd'
 import { changecollapsed } from '../../../redux/action/actions'
 import './index.css'
 const { Header } = Layout
-const roleName = '新闻咨询管理员'
-const username = '三只晓筱'
 function TopHeader(props) {
     const navigate = useNavigate()
+    const token = qs.parse(sessionStorage.getItem('token'))
+    const [roleName, setRoleName] = useState('')
+    useEffect(() => {
+        axios.post('/admin/getRolesById', qs.stringify({ roleid: token.roleid })).then(res => {
+            setRoleName(res.data.results.rolename)
+        })
+    }, [token])
     const menu = (
         <Menu className='ava_menu' >
             <Menu.Item key="1">{roleName}</Menu.Item>
@@ -46,7 +53,7 @@ function TopHeader(props) {
                 />
             )}
             <div className="right">
-                <span className="welcome">欢迎 <b>{username}</b></span>
+                <span className="welcome">欢迎 <b>{token.username}</b></span>
                 &nbsp;&nbsp;
                 <Dropdown overlay={menu}>
                     <Avatar className="avatar" alt="用户头像" icon={<UserOutlined />} />
