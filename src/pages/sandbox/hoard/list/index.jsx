@@ -36,27 +36,17 @@ export default function VoluntList() {
     }, [])
     const columns = [
         {
-            title: '话题ID',
-            dataIndex: 'topicid',
-            width: '10%',
-            render: (topicid) => {
-                return <b>{topicid}</b>
+            title: '作者',
+            dataIndex: 'nickname',
+            width: '15%',
+            render: (nickname) => {
+                return <b>{nickname}</b>
             },
-
-        },
-        {
-            title: '用户ID',
-            dataIndex: 'userid',
-            width: '10%',
-            render: (topicid) => {
-                return <b>{topicid}</b>
-            },
-
         },
         {
             title: '话题标题',
             dataIndex: 'title',
-            width: '40%',
+            width: '45%',
         },
         {
             title: '分类',

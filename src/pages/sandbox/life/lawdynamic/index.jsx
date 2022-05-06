@@ -26,14 +26,9 @@ export default function Lawdynamic() {
     }, [])
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'dynamicid',
-            width: '10%',
-        },
-        {
             title: '标题',
             dataIndex: 'title',
-            width: '50%',
+            width: '63%',
         },
         {
             title: '主题名称',

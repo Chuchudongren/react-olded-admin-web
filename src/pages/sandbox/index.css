@@ -16,3 +16,12 @@
   .ant-descriptions-item-label,.ant-descriptions-item-content{
     font-size: 18px !important;
   }
+  .ant-tag-red {
+    font-size: 20px !important;
+    padding: 5px 10px !important;
+    margin-bottom: 5px !important;
+  }
+  .ant-tag-red span svg{
+    width: 16px !important;
+    height: 16px !important;
+  }

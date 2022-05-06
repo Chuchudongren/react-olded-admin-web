@@ -23,14 +23,14 @@ export default function VoluntList() {
     }, [])
     const columns = [
         {
-            title: '用户ID',
-            dataIndex: 'userid',
-            width: '25%',
-        },
-        {
             title: '用户昵称',
             dataIndex: 'nickname',
             width: '30%',
+        },
+        {
+            title: '真实姓名',
+            dataIndex: 'realname',
+            width: '25%',
         },
         {
             title: '审核状态',
@@ -120,7 +120,7 @@ export default function VoluntList() {
                 dataSource={dataSource}
                 columns={columns}
                 rowClassName="editable-row"
-                rowKey={(item) => item.voluntid}
+                rowKey={(item) => item.userid}
                 pagination={{
                     pageSize: 7,
                 }}

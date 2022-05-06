@@ -28,11 +28,6 @@ export default function MessageList() {
     }, [])
     const columns = [
         {
-            title: '资讯ID',
-            dataIndex: 'messageid',
-            width: '10%',
-        },
-        {
             title: '标题',
             dataIndex: 'title',
             width: '40%',
@@ -50,6 +45,15 @@ export default function MessageList() {
             sorter: (a, b) => a.isreply - b.isreply,
             render: (isreply) => {
                 return isreply === 1 ? '已回复' : '待回复'
+            },
+        },
+        {
+            title: '公开状态',
+            dataIndex: 'isopen',
+            width: '12%',
+            sorter: (a, b) => a.isopen - b.isopen,
+            render: (isopen) => {
+                return isopen === 1 ? '公开' : '隐藏'
             },
         },
         {

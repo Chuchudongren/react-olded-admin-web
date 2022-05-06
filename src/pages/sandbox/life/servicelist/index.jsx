@@ -32,9 +32,9 @@ export default function MessageList() {
     }, [])
     const columns = [
         {
-            title: '商户id',
-            dataIndex: 'servicelistid',
-            width: '10%',
+            title: '公司名称',
+            dataIndex: 'conpany',
+            width: '20%',
         },
         {
             title: '标题',
@@ -44,7 +44,7 @@ export default function MessageList() {
         {
             title: '分类',
             dataIndex: 'category',
-            width: '20%',
+            width: '13%',
             filters: [
                 { text: '找保姆', value: '找保姆' },
                 { text: '找保洁', value: '找保洁' },

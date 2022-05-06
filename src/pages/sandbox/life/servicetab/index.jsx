@@ -20,14 +20,9 @@ export default function Lawdynamic() {
     }, [])
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'servicelistid',
-            width: '10%',
-        },
-        {
             title: '公司名称',
             dataIndex: 'conpany',
-            width: '20%',
+            width: '30%',
         },
         {
             title: '标签',
@@ -55,6 +50,8 @@ export default function Lawdynamic() {
                             onClick={() => {
                                 setIsModalVisible(true)
                                 setCurrentItem(item)
+                                form_modal.setFieldsValue({ tabname: '' })
+
                             }}
                             shape="circle"
                             icon={<PlusOutlined />}

@@ -99,21 +99,15 @@ export default function UserList() {
 
     const columns = [
         {
-            title: '订单ID',
-            dataIndex: 'clinicrecord',
-            width: '10%',
-            editable: false,
-        },
-        {
-            title: '用户ID',
-            dataIndex: 'userid',
-            width: '10%',
+            title: '用户昵称',
+            dataIndex: 'nickname',
+            width: '15%',
             editable: false,
         },
         {
             title: '诊所名称',
             dataIndex: 'name',
-            width: '40%',
+            width: '42%',
             editable: false,
         },
         {
@@ -152,6 +146,7 @@ export default function UserList() {
                                 &nbsp;
                             </>
                         )}
+                        &nbsp;
                         <Button
                             type='primary'
                             onClick={() => {
@@ -240,11 +235,8 @@ export default function UserList() {
             </Form>
             <Modal title="预约记录" width={'1200px'} cancelText='取消' okText='确定' visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                 <Descriptions column={3}>
-                    <Descriptions.Item label="预约id">
-                        {currentItem.clinicrecord}
-                    </Descriptions.Item>
-                    <Descriptions.Item label="用户id">
-                        {currentItem.userid}
+                    <Descriptions.Item label="用户昵称">
+                        {currentItem.nickname}
                     </Descriptions.Item>
                     <Descriptions.Item label="联系电话">
                         {currentItem.tel}

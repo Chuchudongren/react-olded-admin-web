@@ -56,7 +56,6 @@ function HoardDetail() {
                     return item
                 })
                 axios.post('/admin/deleteCommentById', qs.stringify({ topiccommentid: args[1] })).then(res => {
-                    console.log(res);
                     if (res.data.status === 200) message.success(res.data.message)
                 })
                 setAllData(newData2)

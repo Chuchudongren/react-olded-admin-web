@@ -101,15 +101,16 @@ export default function MessageList() {
             ),
     });
     const columns = [
-        {
-            title: 'ID',
-            dataIndex: 'hospitallistid',
-            width: '10%',
-        },
+
         {
             title: '医院名称',
             dataIndex: 'hospitalname',
             width: '50%',
+        },
+        {
+            title: '省份',
+            dataIndex: 'province',
+            width: '15%',
         },
         {
             title: '城市',

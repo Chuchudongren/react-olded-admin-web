@@ -23,11 +23,6 @@ export default function MessageList() {
     }, [])
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'hoardcateid',
-            width: '20%',
-        },
-        {
             title: '论坛分类',
             dataIndex: 'hoardcate',
             width: '60%',

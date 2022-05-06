@@ -95,14 +95,15 @@ export default function MessageList() {
     });
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'clinicid',
-            width: '10%',
-        },
-        {
             title: '诊所名称',
             dataIndex: 'name',
             width: '40%',
+        },
+        {
+            title: '省份',
+            dataIndex: 'province',
+            sorter: (a, b) => { return a.province > b.province ? a : b },
+            width: '15%',
         },
         {
             title: '城市',

@@ -25,18 +25,9 @@ export default function NewsList() {
     }, [])
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'healthmsgid',
-            width: '10%',
-            render: (healthmsgid) => {
-                return <b>{healthmsgid}</b>
-            },
-
-        },
-        {
             title: '咨询标题',
             dataIndex: 'title',
-            width: '50%',
+            width: '44%',
         },
         {
             title: '分类',
@@ -50,6 +41,15 @@ export default function NewsList() {
             filteredValue: filteredInfo.grade || null,
             onFilter: (grade, record) => record.grade.includes(grade),
             ellipsis: true,
+        },
+        {
+            title: '日期',
+            dataIndex: 'pushtime',
+            width: '14%',
+            render: (pushtime) => {
+                let newPush = pushtime.split(' ')[0]
+                return newPush
+            }
         },
         {
             title: '热门',
