@@ -60,7 +60,7 @@ export default function Add() {
                 })
             }
         })
-        navigate('/news/list')
+        // navigate('/news/list')
     }
 
     useEffect(() => {

@@ -93,9 +93,6 @@ function HoardDetail() {
                         key={flash}
                     >
                         <Descriptions column={3}>
-                            <Descriptions.Item label="话题ID">
-                                {allData.cateid}
-                            </Descriptions.Item>
                             <Descriptions.Item label="作者">
                                 {allData.nickname}
                             </Descriptions.Item>
@@ -105,6 +102,8 @@ function HoardDetail() {
                             <Descriptions.Item label="分类">
                                 {allData.hoardcate}
                             </Descriptions.Item>
+                        </Descriptions>
+                        <Descriptions column={4}>
                             <Descriptions.Item label="是否热门">
                                 {allData.ishot ? '是' : '否'}
                             </Descriptions.Item>

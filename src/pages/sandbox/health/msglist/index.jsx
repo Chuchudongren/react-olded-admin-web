@@ -154,7 +154,7 @@ export default function NewsList() {
                     pageSize: 7,
                 }}
             />
-            <Modal title="添加用户" width={'1200px'} cancelText='取消' okText='确定' visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title="查看" width={'1200px'} cancelText='取消' okText='确定' visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                 <Descriptions column={1}>
                     <Descriptions.Item label="标题">
                         {currentItem.title}
@@ -173,7 +173,7 @@ export default function NewsList() {
                         {currentItem.intro}
                     </Descriptions.Item>
                     <Descriptions.Item label="内容">
-                        {currentItem.content}
+                        <div dangerouslySetInnerHTML={{ __html: currentItem.content }}></div>
                     </Descriptions.Item>
                 </Descriptions>
             </Modal>

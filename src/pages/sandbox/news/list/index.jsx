@@ -23,18 +23,9 @@ export default function NewsList() {
     }, [])
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'newsid',
-            width: '10%',
-            render: (newsid) => {
-                return <b>{newsid}</b>
-            },
-
-        },
-        {
             title: '新闻标题',
             dataIndex: 'title',
-            width: '50%',
+            width: '60%',
             render: (title, item) => {
                 return <a href={`/news/preview/${item.newsid}`}>{title}</a>
             },
